@@ -25,6 +25,8 @@ public class CharacterMechanics : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
+
+
         walkController = GameObject.FindGameObjectWithTag("ControllerWalk").GetComponent<ControllerWalk>();
         jumpController = GameObject.FindGameObjectWithTag("ControllerJump").GetComponent<ControllerJump>();
         sprintController = GameObject.FindGameObjectWithTag("ControllerSprint").GetComponent<ControllerSprint>();
@@ -46,8 +48,10 @@ public class CharacterMechanics : MonoBehaviour
             animator.SetBool("Falling", false);
 
             moveVector = Vector3.zero;
-            moveVector.x = walkController.Horizontal() * speedWalk;
-            moveVector.z = walkController.Vertical() * speedWalk;
+            moveVector.x = walkController.Horizontal() * (sprintController.SprintCharacter() ? speedSprint : speedWalk);
+            moveVector.z = walkController.Vertical() * (sprintController.SprintCharacter() ? speedSprint : speedWalk);
+
+            animator.SetBool("Sprint", sprintController.SprintCharacter());
 
             if (moveVector.x != 0 || moveVector.z != 0) animator.SetBool("Walk", true);
             else animator.SetBool("Walk", false);

@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ControllerSprint : AbstractController
+public class ControllerSprint : AbstractController, IPointerDownHandler, IPointerUpHandler
 {
     private Image sprintImage;
 
@@ -30,9 +30,9 @@ public class ControllerSprint : AbstractController
         sprintClick = false;
     }
 
-    public bool JumpCharacter()
+    public bool SprintCharacter()
     {
-        return sprintClick ? sprintClick : Input.GetKeyDown(KeyCode.LeftShift);
+        return sprintClick;
     }
 
 }

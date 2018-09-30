@@ -10,6 +10,7 @@ TagManager:
   - ControllerPut
   - ControllerHit
   - InventoryManager
+  - ControllerInventory
   layers:
   - Default
   - TransparentFX
